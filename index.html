@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Morning Babe ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffe6f0, #ffb3c6);
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.card {
+    background: white;
+    padding: 35px 25px;
+    border-radius: 22px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    max-width: 330px;
+    z-index: 2;
+}
+
+h1 {
+    color: #ff4d6d;
+}
+
+p {
+    color: #555;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 30px;
+    background: #ff4d6d;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* HEARTS */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 24px;
+    animation: floatUp 6s linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body onload="startHearts()">
+
+<div class="card">
+    <h1 id="text">Good Morning, babe ☀️❤️</h1>
+    <p>Tap for your dad joke 😄</p>
+    <button onclick="nextMessage()">Tap me 💕</button>
+</div>
+
+<script>
+let messages = [
+    "Why did the alarm clock break up with the bed? It felt taken for granted 😄",
+    "I know… that joke might not be funny to you",
+    "But I love the way you smile when I try 😊",
+    "And yeah… I love you a lot, as always ❤️"
+];
+
+let index = 0;
+function nextMessage() {
+    document.getElementById("text").innerText = messages[index];
+    index = (index + 1) % messages.length;
+    createHearts();
+}
+
+// HEART FUNCTION
+function createHearts() {
+    for (let i = 0; i < 5; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+    }
+}
+
+// AUTO HEARTS ON OPEN
+function startHearts() {
+    setInterval(createHearts, 2000);
+}
+</script>
+
+</body>
+</html>
